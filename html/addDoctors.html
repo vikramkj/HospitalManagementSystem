@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hospital Management</title>
+<link type="text/css" rel="stylesheet" href="/css/index.css"/>
+<script type="text/javascript" src="/Js/addDoctor.js"></script>
+
+</head>
+<body>
+    <div class="addDialog">
+        <div class="popUpheader">Add Doctor</div>
+        <div  id="PopUpContent">   
+            <div class="textAreaDiv">
+                <input class="inputTextArea" type="text" placeholder="Doctor name"/>
+                <input class="inputTextArea" type="text" placeholder="Doctor Age"/>
+            </div>
+            <div class="textAreaDiv">
+                <input class="inputTextArea" type="text" placeholder="Specality"/>
+                <input class="inputTextArea" type="text" placeholder="Qualification"/>
+            </div>
+            <div class="textAreaDiv">
+                <input class="inputTextArea" type="text" placeholder="Phone Number"/>
+                <input class="inputTextArea" type="text" placeholder="email id"/>
+            </div>
+            <div class="textAreaDiv">
+                <textarea type="text" class="inputTextAreaFullDiv" placeholder="Address"></textarea>
+            </div>
+        </div>
+        <div style="margin-top:15px">
+            <input class="popUpButtonSubmit" type="button" value="Create" onclick="createDoctor()"/>
+            <input class="popUpCancelButton" type="button" value="Cancel" onclick = "cancelAddDoctor()"/>
+   </div>
+    </div>
+</body>
+</html>
