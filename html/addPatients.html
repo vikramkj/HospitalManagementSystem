@@ -7,31 +7,33 @@
 
 </head>
 <body>
+    <form id="doctor_form" type="post">
     <div class="addDialog">
         <div class="popUpheader">Add Patient</div>
         <div  id="PopUpContent">   
             <div class="textAreaDiv">
-                <input class="inputTextArea" type="text" placeholder="Patient name"/>
-                <input class="inputTextArea" type="text" placeholder="Patient Age"/>
+                <input class="inputTextArea" id="patient_name" type="text" placeholder="Patient name" required/>
+                <input class="inputTextArea" id="patient_age" type="text" placeholder="Patient Age" required/>
             </div>
             <div class="textAreaDiv">
-                <input class="inputTextArea" type="text" placeholder="consulting Hospital"/>
-                <select class="inputTextArea" type="text" id="doctorList">
+                <input class="inputTextArea" id="consulting_hospital" type="text" placeholder="consulting Hospital" required/>
+                <select class="inputTextArea" id="doctor_dropdown_list" type="text" id="doctorList">
                     <option>Select Doctor</option>
                 </select>
             </div>
             <div class="textAreaDiv">
-                <input class="inputTextArea" type="text" placeholder="Phone Number"/>
-                <input class="inputTextArea" type="text" placeholder="email id"/>
+                <input class="inputTextArea" id="patient_phone_number" type="text" placeholder="Phone Number" required/>
+                <input class="inputTextArea" id="patient_email_id" type="text" placeholder="email id" required/>
             </div>
             <div class="textAreaDiv">
-                <textarea type="text" class="inputTextAreaFullDiv" placeholder="Address"></textarea>
+                <textarea type="text" id="patient_address" class="inputTextAreaFullDiv" placeholder="Address" required></textarea>
             </div>
         </div>
         <div style="margin-top:15px">
-            <input class="popUpButtonSubmit" type="button" value="Create" onclick="createDoctor()"/>
-            <input class="popUpCancelButton" type="button" value="Cancel" onclick = "cancelAddDoctor()"/>
+            <input class="popUpButtonSubmit" id="patient_create_btn" type="submit" value="Create" onclick="createPatient(event)"/>
+            <input class="popUpCancelButton" id="patient_cancel_btn" type="button" value="Cancel" onclick = "cancelAddDoctor()"/>
    </div>
     </div>
+    </form>
 </body>
 </html>

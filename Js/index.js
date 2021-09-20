@@ -1,23 +1,87 @@
 function viewDoctors()
 {
   $("#workArea").css("background-image","none");
-  $( "#workArea").load("viewDoctors.html");
+  document.getElementById("workArea").innerHTML = "";
+  //$("#workArea").load("viewDoctors.html");
+  loadDoctorList();
 }
 
 function viewPatients()
 {
   $("#workArea").css("background-image", "none");
-  $("#workArea").load("viewpatients.html");
+  document.getElementById("workArea").innerHTML = "";
+  loadPatientList();
 }
 
 function addDoctor()
 {
-  $("#popup").load("addDoctors.html");
   document.getElementById("popup").style.display="block";
+  $("#popup").load("addDoctors.html");
+  $.getScript("addDoctor.js");
 }
 
 function addpatient()
 {
    $("#popup").load("addPatients.html");
    $("#popup").show();
+}
+
+function loadDoctorList()
+{
+  var localData = localStorage.getItem("arrDoctorList");
+  var rowData = localData !== null ? JSON.parse(localData) :[];
+  var tableRows = "<table>";
+  tableRows += buildDoctorListHeaders(tableRows);
+  for(var i=0;i<rowData.length;i++){
+      tableRows +="<tr><td>"+rowData[i].m_strDoctorName+"<td>";
+      tableRows +="<td>"+rowData[i].m_nDoctorAge+"<td>";
+      tableRows +="<td>"+rowData[i].m_strSpeciality+"<td>";
+      tableRows +="<td>"+rowData[i].m_strQualification+"<td>";
+      tableRows +="<td>"+rowData[i].m_strPhoneNumber+"<td>";
+      tableRows +="<td>"+rowData[i].m_strEmailId+"<td>";
+      tableRows +="<td>"+rowData[i].m_strAddress+"<td>";
+      tableRows +="</tr>";
+     }
+     tableRows += "<table>";
+  $("#workArea").append(tableRows);
+}
+
+function buildDoctorListHeaders(rowHeader){
+    rowHeader += "<tr><th>Doctor Name</th>";
+    rowHeader += "<th>Doctor Age</th>";
+    rowHeader += "<th>Speciality</th>";
+    rowHeader += "<th>Qualfication</th>";
+    rowHeader += "<th>Phone Number</th>";
+    rowHeader += "<th>Email Id</th>";
+    rowHeader += "<th>Address</th></tr>";
+  return rowHeader;
+}
+
+function loadPatientList()
+{
+  var localData = localStorage.getItem("arrPatientList");
+  var rowData = localData !== null ? JSON.parse(localData) :[];
+  var tableRows = "<table>";
+  tableRows += buildPatientListHeaders(tableRows);
+  for(var i=0;i<rowData.length;i++){
+      tableRows +="<tr><td>"+rowData[i].m_strPatientName+"<td>";
+      tableRows +="<td>"+rowData[i].m_nPatientAge+"<td>";
+      tableRows +="<td>"+rowData[i].m_strConsultedHospital+"<td>";
+      tableRows +="<td>"+rowData[i].m_strPhoneNumber+"<td>";
+      tableRows +="<td>"+rowData[i].m_strEmailId+"<td>";
+      tableRows +="<td>"+rowData[i].m_strAddress+"<td>";
+      tableRows +="</tr>";
+     }
+     tableRows += "<table>";
+  $("#workArea").append(tableRows);
+}
+
+function buildPatientListHeaders(rowHeader){
+    rowHeader += "<tr><th>Patient Name</th>";
+    rowHeader += "<th>Patient Age</th>";
+    rowHeader += "<th>Consulting Hospital</th>";
+    rowHeader += "<th>Phone Number</th>";
+    rowHeader += "<th>Email Id</th>";
+    rowHeader += "<th>Address</th></tr>";
+  return rowHeader;
 }
