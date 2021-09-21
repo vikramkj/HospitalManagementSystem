@@ -36,14 +36,14 @@ function createDoctor(event)
   var tableRows = "<table>";
   tableRows += buildHeaders();
   for(var i=0;i<rowData.length;i++){
-      tableRows +="<tr><td>"+rowData[i].m_strDoctorName+"<td>";
-      tableRows +="<td>"+rowData[i].m_nDoctorAge+"<td>";
-      tableRows +="<td>"+rowData[i].m_strSpeciality+"<td>";
-      tableRows +="<td>"+rowData[i].m_strQualification+"<td>";
-      tableRows +="<td>"+rowData[i].m_strPhoneNumber+"<td>";
-      tableRows +="<td>"+rowData[i].m_strEmailId+"<td>";
-      tableRows +="<td>"+rowData[i].m_strAddress+"<td>";
-      tableRows +="<td><i class='fas fa-pen' style='font-size:20px' onclick='editDoctor("+i+")'></i><i class='fas fa-trash' style='font-size:20px;margin-left:5px' onclick='deleteDoctor("+i+")'></i><td>";
+      tableRows +="<tr><td>"+rowData[i].m_strDoctorName+"</td>";
+      tableRows +="<td>"+rowData[i].m_nDoctorAge+"</td>";
+      tableRows +="<td>"+rowData[i].m_strSpeciality+"</td>";
+      tableRows +="<td>"+rowData[i].m_strQualification+"</td>";
+      tableRows +="<td>"+rowData[i].m_strPhoneNumber+"</td>";
+      tableRows +="<td>"+rowData[i].m_strEmailId+"</td>";
+      tableRows +="<td>"+rowData[i].m_strAddress+"</td>";
+      tableRows +="<td><i class='fas fa-pen' style='font-size:20px' onclick='editDoctor("+i+")'></i><i class='fas fa-trash' style='font-size:20px;margin-left:5px' onclick='deleteDoctor("+i+")'></i></td>";
       tableRows +="</tr>";
      }
      tableRows += "<table>";
@@ -82,17 +82,17 @@ function setDoctorData(rowData)
   $("#dotor_phone_number").val(rowData.m_strPhoneNumber);
   $("#doctor_email_id").val(rowData.m_strEmailId);
   $("#doctor_address").val(rowData.m_strAddress);
-  document.getElementById('doctor_create_btn').innerHTML = "Update";
+  $("#doctor_create_btn").val("update");
 }
 
 function deleteDoctor(index)
 {
   localStorage.setItem('doctorIndex',index);
   document.getElementById("deleteDialog").style.display="block";
-  $("#deleteDialog").load("delete.html");
+  $("#deleteDialog").load("deleteDoctor.html");
 }
 
-function deleteData()
+function deleteDoctorData()
 {
   var localData = localStorage.getItem("arrDoctorList");
   var index = parseInt(localStorage.getItem('doctorIndex'));

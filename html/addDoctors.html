@@ -2,10 +2,9 @@
 <html>
 <head>
 <title>Hospital Management</title>
-<script  type="text/javascript" src="/jquery/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <form id="doctor_form" type="post">  
+    <form id="doctor_form" onsubmit="createDoctor(event)">  
     <div class="addDialog">
         <div class="popUpheader">Add Doctor</div>
         <div  id="PopUpContent">   
@@ -26,9 +25,9 @@
             </div>
         </div>
         <div style="margin-top:15px">
-            <input class="popUpButtonSubmit" id="doctor_create_btn" type="submit" value="Create" onclick="createDoctor(event)"/>
+            <input class="popUpButtonSubmit" id="doctor_create_btn" type="submit" value="Create"/>
             <input class="popUpCancelButton" id="doctor_cancel_btn" type="button" value="Cancel" onclick = "cancelAddDoctor()"/>
-   </div>
+       </div>
     </div>
     </form>
 </body>

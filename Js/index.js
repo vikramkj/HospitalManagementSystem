@@ -16,13 +16,12 @@ function addDoctor()
 {
   document.getElementById("popup").style.display="block";
   $("#popup").load("addDoctors.html");
-  $.getScript("addDoctor.js");
 }
 
 function addpatient()
 {
+   document.getElementById("popup").style.display="block";
    $("#popup").load("addPatients.html");
-   $("#popup").show();
 }
 
 function loadDoctorList()
@@ -32,13 +31,13 @@ function loadDoctorList()
   var tableRows = "<table>";
   tableRows += buildDoctorListHeaders(tableRows);
   for(var i=0;i<rowData.length;i++){
-      tableRows +="<tr><td>"+rowData[i].m_strDoctorName+"<td>";
-      tableRows +="<td>"+rowData[i].m_nDoctorAge+"<td>";
-      tableRows +="<td>"+rowData[i].m_strSpeciality+"<td>";
-      tableRows +="<td>"+rowData[i].m_strQualification+"<td>";
-      tableRows +="<td>"+rowData[i].m_strPhoneNumber+"<td>";
-      tableRows +="<td>"+rowData[i].m_strEmailId+"<td>";
-      tableRows +="<td>"+rowData[i].m_strAddress+"<td>";
+      tableRows +="<tr><td>"+rowData[i].m_strDoctorName+"</td>";
+      tableRows +="<td>"+rowData[i].m_nDoctorAge+"</td>";
+      tableRows +="<td>"+rowData[i].m_strSpeciality+"</td>";
+      tableRows +="<td>"+rowData[i].m_strQualification+"</td>";
+      tableRows +="<td>"+rowData[i].m_strPhoneNumber+"</td>";
+      tableRows +="<td>"+rowData[i].m_strEmailId+"</td>";
+      tableRows +="<td>"+rowData[i].m_strAddress+"</td>";
       tableRows +="<td><i class='fas fa-pen' style='font-size:20px' onclick='editDoctor("+i+")'></i><i class='fas fa-trash' style='font-size:20px;margin-left:5px' onclick='deleteDoctor("+i+")'></i><td>";
       tableRows +="</tr>";
      }
@@ -65,12 +64,14 @@ function loadPatientList()
   var tableRows = "<table>";
   tableRows += buildPatientListHeaders(tableRows);
   for(var i=0;i<rowData.length;i++){
-      tableRows +="<tr><td>"+rowData[i].m_strPatientName+"<td>";
-      tableRows +="<td>"+rowData[i].m_nPatientAge+"<td>";
-      tableRows +="<td>"+rowData[i].m_strConsultedHospital+"<td>";
-      tableRows +="<td>"+rowData[i].m_strPhoneNumber+"<td>";
-      tableRows +="<td>"+rowData[i].m_strEmailId+"<td>";
-      tableRows +="<td>"+rowData[i].m_strAddress+"<td>";
+      tableRows +="<tr><td>"+rowData[i].m_strPatientName+"</td>";
+      tableRows +="<td>"+rowData[i].m_nPatientAge+"</td>";
+      tableRows +="<td>"+rowData[i].m_strConsultedHospital+"</td>";
+      tableRows +="<td>"+rowData[i].m_strDoctor+"</td>";
+      tableRows +="<td>"+rowData[i].m_strPhoneNumber+"</td>";
+      tableRows +="<td>"+rowData[i].m_strEmailId+"</td>";
+      tableRows +="<td>"+rowData[i].m_strAddress+"</td>";
+      tableRows +="<td><i class='fas fa-pen' style='font-size:20px' onclick='editPatient("+i+")'></i><i class='fas fa-trash' style='font-size:20px;margin-left:5px' onclick='deletePatient("+i+")'></i></td>";
       tableRows +="</tr>";
      }
      tableRows += "<table>";
@@ -81,8 +82,10 @@ function buildPatientListHeaders(rowHeader){
     rowHeader += "<tr><th>Patient Name</th>";
     rowHeader += "<th>Patient Age</th>";
     rowHeader += "<th>Consulting Hospital</th>";
+    rowHeader += "<th>Consulted Doctor</th>";
     rowHeader += "<th>Phone Number</th>";
     rowHeader += "<th>Email Id</th>";
     rowHeader += "<th>Address</th></tr>";
+    rowHeader += "<th>Actions</th></tr>";
   return rowHeader;
 }

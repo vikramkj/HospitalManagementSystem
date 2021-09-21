@@ -2,12 +2,13 @@
 <html>
 <head>
 <title>Hospital Management</title>
-<link type="text/css" rel="stylesheet" href="/css/index.css"/>
-<script type="text/javascript" src="/Js/addDoctor.js"></script>
-
+<script  type="text/javascript" src="/jquery/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+   $.getScript("/Js/addpatient.js");
+</script>
 </head>
-<body>
-    <form id="doctor_form" type="post">
+<body onload="populateDoctorDropdown()">
+    <form id="doctor_form" onsubmit="createPatient(event)">
     <div class="addDialog">
         <div class="popUpheader">Add Patient</div>
         <div  id="PopUpContent">   
@@ -17,12 +18,12 @@
             </div>
             <div class="textAreaDiv">
                 <input class="inputTextArea" id="consulting_hospital" type="text" placeholder="consulting Hospital" required/>
-                <select class="inputTextArea" id="doctor_dropdown_list" type="text" id="doctorList">
-                    <option>Select Doctor</option>
+                <select class="inputTextArea" id="doctor_dropdown_list" type="text" id="doctorList" required>
+            
                 </select>
             </div>
             <div class="textAreaDiv">
-                <input class="inputTextArea" id="patient_phone_number" type="text" placeholder="Phone Number" required/>
+                <input class="inputTextArea" id="patient_phone_number" type="tel" minlength="10" maxlength="10" placeholder="Phone Number" required/>
                 <input class="inputTextArea" id="patient_email_id" type="text" placeholder="email id" required/>
             </div>
             <div class="textAreaDiv">
@@ -30,8 +31,8 @@
             </div>
         </div>
         <div style="margin-top:15px">
-            <input class="popUpButtonSubmit" id="patient_create_btn" type="submit" value="Create" onclick="createPatient(event)"/>
-            <input class="popUpCancelButton" id="patient_cancel_btn" type="button" value="Cancel" onclick = "cancelAddDoctor()"/>
+            <input class="popUpButtonSubmit" id="patient_create_btn" type="submit" value="Create"/>
+            <input class="popUpCancelButton" id="patient_cancel_btn" type="button" value="Cancel" onclick = "cancelAddPatient()"/>
    </div>
     </div>
     </form>
