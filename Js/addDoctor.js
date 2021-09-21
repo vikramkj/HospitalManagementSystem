@@ -12,7 +12,6 @@ function createDoctor(event)
    event.preventDefault();
    $("#popup").hide();
    $("#workArea").css("background-image", "none");
-   document.getElementById("workArea").innerHTML = "";
    loadDoctorList();
  }
 
@@ -31,6 +30,7 @@ function createDoctor(event)
 
  function loadDoctorList()
 {
+  document.getElementById("workArea").innerHTML = "";
   var localData = localStorage.getItem("arrDoctorList");
   var rowData = localData !== null ? JSON.parse(localData) :[];
   var tableRows = "<table>";
@@ -43,6 +43,7 @@ function createDoctor(event)
       tableRows +="<td>"+rowData[i].m_strPhoneNumber+"<td>";
       tableRows +="<td>"+rowData[i].m_strEmailId+"<td>";
       tableRows +="<td>"+rowData[i].m_strAddress+"<td>";
+      tableRows +="<td><i class='fas fa-pen' style='font-size:20px' onclick='editDoctor("+i+")'></i><i class='fas fa-trash' style='font-size:20px;margin-left:5px' onclick='deleteDoctor("+i+")'></i><td>";
       tableRows +="</tr>";
      }
      tableRows += "<table>";
@@ -58,6 +59,56 @@ function buildHeaders(){
     rowHeader += "<th>Phone Number</th>";
     rowHeader += "<th>Email Id</th>";
     rowHeader += "<th>Address</th>";
+    rowHeader += "<th>Actions</th>";
     rowHeader += "</tr>";
   return rowHeader;
 }
+
+function editDoctor(index)
+{
+  var localData = localStorage.getItem("arrDoctorList");
+  var rowData = localData !== null ? JSON.parse(localData) :[];
+  document.getElementById("popup").style.display="block";
+  $("#popup").load("addDoctors.html");
+  setDoctorData(rowData[index]);
+}
+
+function setDoctorData(rowData)
+{
+  $("#doctor_name").val(rowData.m_strDoctorName);
+  $("#doctor_age").val(rowData.m_nDoctorAge);
+  $("#doctor_speciality").val(rowData.m_strSpeciality);
+  $("#doctor_qualification").val(rowData.m_strQualification);
+  $("#dotor_phone_number").val(rowData.m_strPhoneNumber);
+  $("#doctor_email_id").val(rowData.m_strEmailId);
+  $("#doctor_address").val(rowData.m_strAddress);
+  document.getElementById('doctor_create_btn').innerHTML = "Update";
+}
+
+function deleteDoctor(index)
+{
+  localStorage.setItem('doctorIndex',index);
+  document.getElementById("deleteDialog").style.display="block";
+  $("#deleteDialog").load("delete.html");
+}
+
+function deleteData()
+{
+  var localData = localStorage.getItem("arrDoctorList");
+  var index = parseInt(localStorage.getItem('doctorIndex'));
+  var rowData = localData !== null ? JSON.parse(localData) :[];
+  if(index !== 0)
+    rowData.splice(index,index);
+  else
+    rowData.splice(index,index+1);
+  localStorage.setItem("arrDoctorList",JSON.stringify(rowData));
+  loadDoctorList();
+  $("#deleteDialog").hide();
+}
+
+function cancelDeleteDialog()
+{
+  $("#deleteDialog").hide();
+}
+
+

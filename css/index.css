@@ -112,7 +112,7 @@ footer p a{
     background-size: cover;
 }
 
-.popup{
+.popup,.deleteDialog{
      position: fixed;
      display: none;
      top: 0;
@@ -122,7 +122,6 @@ footer p a{
      z-index: 10;
      background-color: rgba(0,0,0,0.5);
   }
-
   .addDialog{
     display: block;
     left: 50%;
@@ -237,3 +236,47 @@ footer p a{
   tr th{
     background-color: #0099ff;
   }
+  
+  .confirmDialog
+  {
+    display: block;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    position: fixed;
+    right: 0px;
+    padding: 5px;
+    margin-top: 20%;
+    background-color: #f1f1f1;
+    border: 1px solid black;
+    z-index: 1;
+    height: 130px;
+    overflow: hidden;
+ }
+ 
+ .popupDialogWithNoClick{
+  position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.headerLabel
+{
+  display: block;
+  font-weight: bold;
+  font-size: large;
+  background-color: #ff4d94;
+  color: white;
+  padding: 5px;
+  text-align: left;
+}
+
+.deleteMsg{
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: 900;
+}

@@ -2,7 +2,6 @@ function viewDoctors()
 {
   $("#workArea").css("background-image","none");
   document.getElementById("workArea").innerHTML = "";
-  //$("#workArea").load("viewDoctors.html");
   loadDoctorList();
 }
 
@@ -40,6 +39,7 @@ function loadDoctorList()
       tableRows +="<td>"+rowData[i].m_strPhoneNumber+"<td>";
       tableRows +="<td>"+rowData[i].m_strEmailId+"<td>";
       tableRows +="<td>"+rowData[i].m_strAddress+"<td>";
+      tableRows +="<td><i class='fas fa-pen' style='font-size:20px' onclick='editDoctor("+i+")'></i><i class='fas fa-trash' style='font-size:20px;margin-left:5px' onclick='deleteDoctor("+i+")'></i><td>";
       tableRows +="</tr>";
      }
      tableRows += "<table>";
@@ -53,7 +53,8 @@ function buildDoctorListHeaders(rowHeader){
     rowHeader += "<th>Qualfication</th>";
     rowHeader += "<th>Phone Number</th>";
     rowHeader += "<th>Email Id</th>";
-    rowHeader += "<th>Address</th></tr>";
+    rowHeader += "<th>Address</th>";
+    rowHeader += "<th>Actions</th></tr>";
   return rowHeader;
 }
 
