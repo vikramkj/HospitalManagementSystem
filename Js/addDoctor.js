@@ -89,10 +89,10 @@ function editDoctor(index)
   var rowData = localData !== null ? JSON.parse(localData) :[];
   document.getElementById("popup").style.display="block";
   $("#popup").load("addDoctors.html");
-  setDoctorData(rowData[index]);
+  setDoctorrData(rowData[index]);
 }
 
-function setDoctorData(rowData)
+function setDoctorrData(rowData)
 {
   $("#doctor_name").val(rowData.m_strDoctorName);
   $("#doctor_age").val(rowData.m_nDoctorAge);
