@@ -1,6 +1,7 @@
-$(document).ready(function(){
+$(function(){
   populateDoctorDropdown();
-})
+});
+
 function populateDoctorDropdown()
     {
        var oDropdownList =JSON.parse(localStorage.getItem("arrDoctorList"));

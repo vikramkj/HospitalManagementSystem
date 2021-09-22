@@ -1,9 +1,28 @@
+var validateForm = $(function() {
+  var $registerForm = $("#doctor_form");
+  if($registerForm.length){
+     $registerForm.validate({
+       rules : {
+         doctorName : {
+           required : true
+         }
+       },
+       messages:{
+        doctorName : {
+          required : "Doctor Name is mandatory"
+        }
+       }
+     });
+  }
+});
+
 function cancelAddDoctor(){
    $("#popup").hide();
 }
 
 function createDoctor(event)
 {
+   validateForm();
    var oDoctorListData = getDoctorData();
    var localData = JSON.parse(localStorage.getItem("arrDoctorList"))
    var list = localData !== null? localData : [];
