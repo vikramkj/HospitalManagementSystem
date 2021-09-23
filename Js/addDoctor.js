@@ -1,4 +1,4 @@
-var validateForm = $(function() {
+function validateForm() {
   var $registerForm = $("#doctor_form");
   if($registerForm.length){
      $registerForm.validate({
@@ -14,7 +14,7 @@ var validateForm = $(function() {
        }
      });
   }
-});
+}
 
 function cancelAddDoctor(){
    $("#popup").hide();
@@ -22,17 +22,38 @@ function cancelAddDoctor(){
 
 function createDoctor(event)
 {
-   validateForm();
-   var oDoctorListData = getDoctorData();
-   var localData = JSON.parse(localStorage.getItem("arrDoctorList"))
-   var list = localData !== null? localData : [];
-   list.push(oDoctorListData); 
-   localStorage.setItem("arrDoctorList",JSON.stringify(list));
+  validateForm();
+  if($("#doctor_create_btn").val() === "Update")
+   {
+     updateDoctor();
+   }
+  else{
+    createNewDoctor();
+   }
    event.preventDefault();
    $("#popup").hide();
    $("#workArea").css("background-image", "none");
    loadDoctorList();
  }
+
+ function createNewDoctor()
+ {
+    var oDoctorListData = getDoctorData();
+    var localData = JSON.parse(localStorage.getItem("arrDoctorList"))
+    var list = localData !== null? localData : [];
+    list.push(oDoctorListData); 
+    localStorage.setItem("arrDoctorList",JSON.stringify(list));
+ }
+
+ function updateDoctor()
+ {
+    var oDoctorListData = getDoctorData();
+    var localData = JSON.parse(localStorage.getItem("arrDoctorList"));
+    var index = JSON.parse(localStorage.getItem("doctorIndex"));
+    localData[index] = oDoctorListData;
+    localStorage.setItem("arrDoctorList",JSON.stringify(localData));
+ }
+
 
  function getDoctorData()
  {
@@ -41,7 +62,7 @@ function createDoctor(event)
    oDoctorData.m_nDoctorAge = $("#doctor_age").val();
    oDoctorData.m_strSpeciality = $("#doctor_speciality").val();
    oDoctorData.m_strQualification = $("#doctor_qualification").val();
-   oDoctorData.m_strPhoneNumber = $("#dotor_phone_number").val();
+   oDoctorData.m_strPhoneNumber = $("#doctor_phone_number").val();
    oDoctorData.m_strEmailId = $("#doctor_email_id").val();
    oDoctorData.m_strAddress = $("#doctor_address").val();
    return oDoctorData;
@@ -85,23 +106,27 @@ function buildHeaders(){
 
 function editDoctor(index)
 {
+  this.event.preventDefault();
   var localData = localStorage.getItem("arrDoctorList");
   var rowData = localData !== null ? JSON.parse(localData) :[];
   document.getElementById("popup").style.display="block";
+  localStorage.setItem('doctorIndex',index);
   $("#popup").load("addDoctors.html");
-  setDoctorrData(rowData[index]);
+  setTimeout(function(){
+  setDoctorData(rowData[index]);
+},10);
 }
 
-function setDoctorrData(rowData)
+function setDoctorData(rowData)
 {
   $("#doctor_name").val(rowData.m_strDoctorName);
   $("#doctor_age").val(rowData.m_nDoctorAge);
   $("#doctor_speciality").val(rowData.m_strSpeciality);
   $("#doctor_qualification").val(rowData.m_strQualification);
-  $("#dotor_phone_number").val(rowData.m_strPhoneNumber);
+  $("#doctor_phone_number").val(rowData.m_strPhoneNumber);
   $("#doctor_email_id").val(rowData.m_strEmailId);
   $("#doctor_address").val(rowData.m_strAddress);
-  $("#doctor_create_btn").val("update");
+  $("#doctor_create_btn").val("Update");
 }
 
 function deleteDoctor(index)

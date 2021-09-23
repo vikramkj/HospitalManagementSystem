@@ -19,11 +19,13 @@ function cancelAddPatient(){
  
  function createPatient(event)
  {
-    var oPatientListData = getPatientData();
-    var localData = JSON.parse(localStorage.getItem("arrPatientList"));
-    var list = localData !== null  ? localData : [];
-    list.push(oPatientListData); 
-    localStorage.setItem("arrPatientList",JSON.stringify(list));
+    if($("#patient_create_btn").val() === "Update")
+    {
+      updatePatient();
+    }
+    else{
+      createNewPatient();
+    }
     $("#popup").hide();
     $("#workArea").css("background-image", "none");
     document.getElementById("workArea").innerHTML = "";
@@ -31,6 +33,23 @@ function cancelAddPatient(){
     event.preventDefault();
   }
 
+  function createNewPatient()
+  {
+    var oPatientListData = getPatientData();
+    var localData = JSON.parse(localStorage.getItem("arrPatientList"));
+    var list = localData !== null  ? localData : [];
+    list.push(oPatientListData); 
+    localStorage.setItem("arrPatientList",JSON.stringify(list));
+  }
+
+  function updatePatient()
+  {
+    var oDoctorListData = getPatientData();
+    var localData = JSON.parse(localStorage.getItem("arrPatientList"));
+    var index = JSON.parse(localStorage.getItem("patientIndex"));
+    localData[index] = oDoctorListData;
+    localStorage.setItem("arrPatientList",JSON.stringify(localData));
+  }
  
   function getPatientData()
   {
@@ -83,7 +102,27 @@ function cancelAddPatient(){
 
 function editPatient(index)
 {
-  alert(index);
+  this.event.preventDefault();
+  var localData = localStorage.getItem("arrPatientList");
+  var rowData = localData !== null ? JSON.parse(localData) :[];
+  document.getElementById("popup").style.display="block";
+  localStorage.setItem('patientIndex',index);
+  $("#popup").load("addPatients.html");
+  setTimeout(function(){
+  setPatientData(rowData[index]);
+},10);
+}
+
+function setPatientData(rowData)
+{
+  $("#patient_name").val(rowData.m_strPatientName);
+  $("#patient_age").val(rowData.m_nPatientAge);
+  $("#consulting_hospital").val(rowData.m_strConsultedHospital);
+  $("#doctor_dropdown_list").val(rowData.m_strDoctor).change();
+  $("#patient_phone_number").val(rowData.m_strPhoneNumber);
+  $("#patient_email_id").val(rowData.m_strEmailId);
+  $("#patient_address").val(rowData.m_strAddress);
+  $("#patient_create_btn").val("Update");
 }
 
 function deletePatient(index)
