@@ -1,17 +1,18 @@
-$(function(){
+function validateFields()
+{
   populateDoctorDropdown();
-});
+}
 
 function populateDoctorDropdown()
-    {
-       var oDropdownList =JSON.parse(localStorage.getItem("arrDoctorList"));
-       var oDoctorList = '<option value="">Select Doctor</option>';  
-       for (var i = 0; i < oDropdownList.length; i++) 
-       {  
-           oDoctorList += '<option value="' + oDropdownList[i].m_strDoctorName + '">' + oDropdownList[i].m_strDoctorName + '</option>';  
-       }  
-       $("#doctor_dropdown_list").html(oDoctorList);
-  }
+  {
+      var oDropdownList =JSON.parse(localStorage.getItem("arrDoctorList"));
+      var oDoctorList = '<option value="">Select Doctor</option>';  
+      for (var i = 0; i < oDropdownList.length; i++) 
+      {  
+          oDoctorList += '<option value="' + oDropdownList[i].m_strDoctorName + '">' + oDropdownList[i].m_strDoctorName + '</option>';  
+      }  
+      $("#doctor_dropdown_list").html(oDoctorList);
+}
 
 function cancelAddPatient(){
    $("#popup").hide();

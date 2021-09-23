@@ -1,15 +1,66 @@
-function validateForm() {
+function validateDoctorForm()
+{
+  validateDoctorFormData();
+}
+
+function validateDoctorFormData()
+{
   var $registerForm = $("#doctor_form");
+  $.validator.addMethod("noSpace",function(value,element){
+     return value == '' || value.trim().length !=0
+  },"spaces");
+
   if($registerForm.length){
      $registerForm.validate({
        rules : {
          doctorName : {
+           required : true,
+           noSpace : true,
+         },
+         doctorAge :{
            required : true
+         },
+         doctorSpeciality :{
+           required : true
+         },
+         doctorQualification :{
+           required : true
+         },
+         phoneNumber :{
+          required : true
+         },
+         emailid :{
+          required : true,
+          email : true,
+         },
+         address :{
+           required : true,
+           
          }
        },
        messages:{
         doctorName : {
-          required : "Doctor Name is mandatory"
+          required : "invalid data",
+          noSpace : "spaces not allowed"
+        },
+        doctorAge :{
+          required : "invalid data"
+        },
+        doctorSpeciality :{
+          required : "invalid data"
+        },
+        doctorQualification :{
+          required : "invalid data"
+        },
+        phoneNumber :{
+          required : "invalid data"
+        },
+        emailid :{
+          required : "invalid data",
+          email:"invalid email"
+        },
+        address :{
+          required : "invalid data"
         }
        }
      });
@@ -22,18 +73,26 @@ function cancelAddDoctor(){
 
 function createDoctor(event)
 {
-  validateForm();
-  if($("#doctor_create_btn").val() === "Update")
-   {
-     updateDoctor();
-   }
-  else{
-    createNewDoctor();
-   }
-   event.preventDefault();
-   $("#popup").hide();
-   $("#workArea").css("background-image", "none");
-   loadDoctorList();
+  event.preventDefault();
+  //validateForm();
+  if(!$("#doctor_form").validate().form())
+  {
+     createorUpdateData();
+  }
+ }
+
+ function createorUpdateData()
+ {
+    if($("#doctor_create_btn").val() === "Update")
+    {
+        updateDoctor();
+    }
+    else{
+       createNewDoctor();
+    }
+    $("#popup").hide();
+    $("#workArea").css("background-image", "none");
+    loadDoctorList();
  }
 
  function createNewDoctor()

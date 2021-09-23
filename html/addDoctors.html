@@ -2,6 +2,9 @@
 <html>
 <head>
 <title>Hospital Management</title>
+<script type="text/javascript">
+    validateDoctorForm();
+</script>
 
 </head>
 <body>
@@ -11,18 +14,18 @@
         <div  id="PopUpContent">   
             <div class="textAreaDiv">
                 <input class="inputTextArea" name="doctorName" id="doctor_name" type="text" placeholder="Doctor name"/>
-                <input class="inputTextArea" id="doctor_age" type="number" placeholder="Doctor Age" required/>
+                <input class="inputTextArea" name="doctorAge" id="doctor_age" type="number" placeholder="Doctor Age"/>
             </div>
             <div class="textAreaDiv">
-                <input class="inputTextArea" id="doctor_speciality" type="text" placeholder="Specality" required/>
-                <input class="inputTextArea" id="doctor_qualification" type="text" placeholder="Qualification" required/>
+                <input class="inputTextArea" name="doctorSpeciality" id="doctor_speciality" type="text" placeholder="Specality"/>
+                <input class="inputTextArea" name="doctorQualification" id="doctor_qualification" type="text" placeholder="Qualification"/>
             </div>
             <div class="textAreaDiv">
-                <input class="inputTextArea" id="doctor_phone_number" type="text" placeholder="Phone Number" required/>
-                <input class="inputTextArea" id="doctor_email_id" type="text" placeholder="email id" required/>
+                <input class="inputTextArea" name="phoneNumber" id="doctor_phone_number" type="text" placeholder="Phone Number"/>
+                <input class="inputTextArea" name="emailid" id="doctor_email_id" type="text" placeholder="email id" />
             </div>
             <div class="textAreaDiv">
-                <textarea type="text" id="doctor_address" class="inputTextAreaFullDiv" placeholder="Address" required></textarea>
+                <textarea type="text" name="address" id="doctor_address" class="inputTextAreaFullDiv" placeholder="Address"></textarea>
             </div>
         </div>
         <div style="margin-top:15px">
