@@ -90,7 +90,7 @@ footer p a{
 #doctor_dropdown_list
 {
   height: 35px;
-  width: 48%;
+  width: 97%;
 }
 
 .dropdown-content a:hover {
@@ -134,7 +134,7 @@ footer p a{
     background-color: #f1f1f1;
     border: 1px solid black;
     z-index: 1;
-    height: 360px;
+    height: 520px;
  }
 
  .popUpheader
@@ -152,7 +152,7 @@ footer p a{
 .inputTextArea{
     margin-left: 5px;
     padding: 6px;
-    width: 46%;
+    width: 95%;
     height: 20px;
     font-size: small;
     font-weight: bold;
@@ -174,9 +174,9 @@ footer p a{
 
   #PopUpContent{
     width:100%;
-    height:75%;
+    height:80%;
     border-bottom: 1px solid;
-    overflow: hidden;
+    overflow: auto;
   }
 
   .textAreaDiv{
@@ -287,4 +287,14 @@ footer p a{
 
 .error{
   color: red;
+}
+
+label.error{
+  margin-left: 10px;
+}
+
+#errorLabel
+{
+    margin-left: 15px;
+    color: red;
 }

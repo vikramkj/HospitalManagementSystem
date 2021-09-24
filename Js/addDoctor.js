@@ -3,64 +3,91 @@ function validateDoctorForm()
   validateDoctorFormData();
 }
 
-function validateDoctorFormData()
-{
+function validateDoctorFormData(){
+
   var $registerForm = $("#doctor_form");
+
   $.validator.addMethod("noSpace",function(value,element){
      return value == '' || value.trim().length !=0
   },"spaces");
 
+  $.validator.addMethod("validateEmail",function( value, element ) {
+    return this.optional( element ) || /[a-zA-Z0-9]+@[a-z0-9]+\.[a-z]+/.test( value );
+  },"emails");
+
+  $.validator.addMethod("phoneNo",function( value, element ) {
+    return this.optional( element ) || /[0-9]{10}/.test( value );
+  },"phoneNumbers");
+
+  $.validator.addMethod("numbers",function( value, element ) {
+    return value > 0 && value <100;
+  },"numbers");
+
   if($registerForm.length){
      $registerForm.validate({
+      debug: true,
+      success: "valid",
+      //errorLabelContainer: "#errorLabel",
        rules : {
          doctorName : {
            required : true,
            noSpace : true,
          },
          doctorAge :{
-           required : true
+           required : true,
+           numbers : true,
          },
          doctorSpeciality :{
-           required : true
+           required : true,
+           noSpace : true,
          },
          doctorQualification :{
-           required : true
+           required : true,
+           noSpace : true,
          },
          phoneNumber :{
-          required : true
+          required : true,
+          noSpace : true,
+          phoneNo : true,
+          maxlength :10,
+          minlength :10
          },
          emailid :{
           required : true,
           email : true,
+          noSpace : true,
+          validateEmail : true
          },
          address :{
            required : true,
-           
          }
        },
        messages:{
         doctorName : {
-          required : "invalid data",
+          required : "please enter user name",
           noSpace : "spaces not allowed"
         },
         doctorAge :{
-          required : "invalid data"
+          required : "please enter valid Age",
+          numbers : "please enter valid Age"
         },
         doctorSpeciality :{
-          required : "invalid data"
+          required : "please enter valid speciality"
         },
         doctorQualification :{
-          required : "invalid data"
+          required : "please enter invalid Qualification"
         },
         phoneNumber :{
-          required : "invalid data"
+          required : "please enter valid phone number",
+          phoneNo : "please enter valid phone number",
         },
         emailid :{
-          required : "invalid data",
-          email:"invalid email"
+          required : "please enter valid email id",
+          email:"please enter valid email id",
+          validateEmail : "please enter valid email id"
         },
         address :{
-          required : "invalid data"
+          required : "please Enter the Address"
         }
        }
      });
@@ -73,13 +100,24 @@ function cancelAddDoctor(){
 
 function createDoctor(event)
 {
-  event.preventDefault();
-  //validateForm();
-  if(!$("#doctor_form").validate().form())
+ // if($("#doctor_form").validate().valid())
+ if(validateDoctorFormData())
   {
      createorUpdateData();
   }
+  event.preventDefault();
  }
+
+ function validateForm ()
+{
+	var bValid = true;
+	var arrElements = $("#doctor_form").children().find (".validatebox");
+  $("#doctor_form").validate();
+	for (var nIndex=0; nIndex < arrElements.length; nIndex++)
+		if ((bValid = $('#'+arrElements[nIndex].id).valid()) == false)
+			break;
+	return bValid;
+}
 
  function createorUpdateData()
  {
@@ -200,10 +238,7 @@ function deleteDoctorData()
   var localData = localStorage.getItem("arrDoctorList");
   var index = parseInt(localStorage.getItem('doctorIndex'));
   var rowData = localData !== null ? JSON.parse(localData) :[];
-  if(index !== 0)
-    rowData.splice(index,index);
-  else
-    rowData.splice(index,index+1);
+  rowData.splice(index,1);
   localStorage.setItem("arrDoctorList",JSON.stringify(rowData));
   loadDoctorList();
   $("#deleteDialog").hide();

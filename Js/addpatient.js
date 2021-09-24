@@ -138,10 +138,7 @@ function deletePatientData()
   var localData = localStorage.getItem("arrPatientList");
   var index = parseInt(localStorage.getItem('patientIndex'));
   var rowData = localData !== null ? JSON.parse(localData) :[];
-  if(index !== 0)
-    rowData.splice(index,index);
-  else
-    rowData.splice(index,index+1);
+  rowData.splice(index,1);
   localStorage.setItem("arrPatientList",JSON.stringify(rowData));
   $("#deleteDialog").hide();
   loadPatientList();

@@ -13,22 +13,29 @@
         <div class="popUpheader">Add Doctor</div>
         <div  id="PopUpContent">   
             <div class="textAreaDiv">
-                <input class="inputTextArea" name="doctorName" id="doctor_name" type="text" placeholder="Doctor name"/>
-                <input class="inputTextArea" name="doctorAge" id="doctor_age" type="number" placeholder="Doctor Age"/>
+                <input class="inputTextArea validatebox" name="doctorName" id="doctor_name" type="text" placeholder="Doctor name"/>
+            </div>
+                <div class="textAreaDiv">   
+                <input class="inputTextArea validatebox" name="doctorAge" id="doctor_age" type="text"  maxlength="2" placeholder="Doctor Age"/></br>
             </div>
             <div class="textAreaDiv">
-                <input class="inputTextArea" name="doctorSpeciality" id="doctor_speciality" type="text" placeholder="Specality"/>
-                <input class="inputTextArea" name="doctorQualification" id="doctor_qualification" type="text" placeholder="Qualification"/>
+                <input class="inputTextArea validatebox" name="doctorSpeciality" id="doctor_speciality" type="text" placeholder="Specality"/>
+            </div>
+            <div class="textAreaDiv">   
+                <input class="inputTextArea validatebox" name="doctorQualification" id="doctor_qualification" type="text" placeholder="Qualification"/></br>
             </div>
             <div class="textAreaDiv">
-                <input class="inputTextArea" name="phoneNumber" id="doctor_phone_number" type="text" placeholder="Phone Number"/>
-                <input class="inputTextArea" name="emailid" id="doctor_email_id" type="text" placeholder="email id" />
+                <input class="inputTextArea validatebox" name="phoneNumber" id="doctor_phone_number" type="text" placeholder="Phone Number"/>
             </div>
             <div class="textAreaDiv">
-                <textarea type="text" name="address" id="doctor_address" class="inputTextAreaFullDiv" placeholder="Address"></textarea>
+                <input class="inputTextArea validatebox" name="emailid" id="doctor_email_id" type="text" placeholder="email id" />
+            </div>
+            <div class="textAreaDiv">
+                <textarea type="text" name="address" id="doctor_address" class="inputTextAreaFullDiv validatebox" placeholder="Address"></textarea>
             </div>
         </div>
         <div style="margin-top:15px">
+            <label id="errorLabel"></label>
             <input class="popUpButtonSubmit" id="doctor_create_btn" type="submit" value="Create"/>
             <input class="popUpCancelButton" id="doctor_cancel_btn" type="button" value="Cancel" onclick = "cancelAddDoctor()"/>
        </div>
