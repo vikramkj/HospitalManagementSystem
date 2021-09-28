@@ -179,7 +179,7 @@ function cancelAddPatient(){
        tableRows +="<td>"+rowData[i].m_strPhoneNumber+"</td>";
        tableRows +="<td>"+rowData[i].m_strEmailId+"</td>";
        tableRows +="<td>"+rowData[i].m_strAddress+"</td>";
-       tableRows +="<td><i class='fas fa-pen' style='font-size:20px' onclick='editPatient("+i+")'></i><i class='fas fa-trash' style='font-size:20px;margin-left:5px' onclick='deletePatient("+i+")'></i></td>";
+       tableRows +="<td><i class='fas fa-pen' style='font-size:20px' title='edit' onclick='editPatient("+i+")'></i><i class='fas fa-trash' title='delete' style='font-size:20px;margin-left:5px' onclick='deletePatient("+i+")'></i></td>";
        tableRows +="</tr>";
       }
       tableRows += "<table>";

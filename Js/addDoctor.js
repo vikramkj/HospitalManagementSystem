@@ -179,7 +179,7 @@ function createDoctor(event)
       tableRows +="<td>"+rowData[i].m_strPhoneNumber+"</td>";
       tableRows +="<td>"+rowData[i].m_strEmailId+"</td>";
       tableRows +="<td>"+rowData[i].m_strAddress+"</td>";
-      tableRows +="<td><i class='fas fa-pen' style='font-size:20px' onclick='editDoctor("+i+")'></i><i class='fas fa-trash' style='font-size:20px;margin-left:5px' onclick='deleteDoctor("+i+")'></i></td>";
+      tableRows +="<td><i class='fas fa-pen' style='font-size:20px' title='edit' onclick='editDoctor("+i+")'></i><i class='fas fa-trash' style='font-size:20px;margin-left:5px' title='delete' onclick='deleteDoctor("+i+")'></i></td>";
       tableRows +="</tr>";
      }
      tableRows += "<table>";
