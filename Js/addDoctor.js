@@ -27,7 +27,6 @@ function validateDoctorFormData(){
      $registerForm.validate({
       debug: true,
       success: "valid",
-      //errorLabelContainer: "#errorLabel",
        rules : {
          doctorName : {
            required : true,
@@ -100,8 +99,8 @@ function cancelAddDoctor(){
 
 function createDoctor(event)
 {
- // if($("#doctor_form").validate().valid())
- if(validateDoctorFormData())
+ validateDoctorFormData();
+ if($("#doctor_form").valid())
   {
      createorUpdateData();
   }

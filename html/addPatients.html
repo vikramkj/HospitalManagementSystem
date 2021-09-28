@@ -2,39 +2,36 @@
 <html>
 <head>
 <title>Hospital Management</title>
-<script  type="text/javascript" src="/jquery/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-   validateFields();
-  // $.getScript("/Js/addpatient.js");
-  
+   validateFields();  
 </script>
 </head>
 <body onload="populateDoctorDropdown()">
-    <form id="doctor_form" onsubmit="createPatient(event)">
+    <form id="patient_form" onsubmit="createPatient(event)">
     <div class="addDialog">
         <div class="popUpheader">Add Patient</div>
         <div  id="PopUpContent">   
             <div class="textAreaDiv">
-                <input class="inputTextArea" id="patient_name" type="text" placeholder="Patient name" required/>
+                <input class="inputTextArea" id="patient_name" name="patientName" type="text" placeholder="Patient name"/>
             </div>
             <div class="textAreaDiv">
-                <input class="inputTextArea" id="patient_age" type="text" placeholder="Patient Age" required/>
+                <input class="inputTextArea" id="patient_age" name="patientAge" type="text" placeholder="Patient Age"/>
             </div>
             <div class="textAreaDiv">
-                <input class="inputTextArea" id="consulting_hospital" type="text" placeholder="consulting Hospital" required/>
+                <input class="inputTextArea" id="consulting_hospital" name="consultingHospital" type="text" placeholder="consulting Hospital"/>
             </div>
             <div class="textAreaDiv">
-                <select class="inputTextArea" id="doctor_dropdown_list" type="text" id="doctorList" required>
+                <select class="inputTextArea" id="doctor_dropdown_list" name="doctorList" type="text" id="doctorList">
                 </select>
             </div>
             <div class="textAreaDiv">
-                <input class="inputTextArea" id="patient_phone_number" type="tel" minlength="10" maxlength="10" placeholder="Phone Number" required/>
+                <input class="inputTextArea" id="patient_phone_number" name="phoneNumber" type="tel" minlength="10" maxlength="10" placeholder="Phone Number"/>
             </div>  
             <div class="textAreaDiv">   
-                <input class="inputTextArea" id="patient_email_id" type="text" placeholder="email id" required/>
+                <input class="inputTextArea" id="patient_email_id" type="text" name="emailId" placeholder="email id"/>
             </div>
             <div class="textAreaDiv">
-                <textarea type="text" id="patient_address" class="inputTextAreaFullDiv" placeholder="Address" required></textarea>
+                <textarea type="text" id="patient_address" name="address" class="inputTextAreaFullDiv" placeholder="Address"></textarea>
             </div>
         </div>
         <div style="margin-top:15px">
@@ -43,5 +40,7 @@
    </div>
     </div>
     </form>
+    <script  type="text/javascript" src="/jquery/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
 </body>
 </html>

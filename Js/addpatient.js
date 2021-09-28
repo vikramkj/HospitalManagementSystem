@@ -1,5 +1,6 @@
 function validateFields()
 {
+  validatePatientFormData();
   populateDoctorDropdown();
 }
 
@@ -14,12 +15,111 @@ function populateDoctorDropdown()
       $("#doctor_dropdown_list").html(oDoctorList);
 }
 
+function validatePatientFormData(){
+
+  var $registerForm = $("#patient_form");
+
+  $.validator.addMethod("noSpace",function(value,element){
+     return value == '' || value.trim().length !=0
+  },"spaces");
+
+  $.validator.addMethod("validateEmail",function( value, element ) {
+    return this.optional( element ) || /[a-zA-Z0-9]+@[a-z0-9]+\.[a-z]+/.test( value );
+  },"emails");
+
+  $.validator.addMethod("phoneNo",function( value, element ) {
+    return this.optional( element ) || /[0-9]{10}/.test( value );
+  },"phoneNumbers");
+
+  $.validator.addMethod("numbers",function( value, element ) {
+    return value > 0 && value <100;
+  },"numbers");
+
+  if($registerForm.length){
+     $registerForm.validate({
+      debug: true,
+      success: "valid",
+       rules : {
+        patientName : {
+           required : true,
+           noSpace : true,
+         },
+         patientAge :{
+           required : true,
+           numbers : true,
+         },
+         consultingHospital :{
+           required : true,
+           noSpace : true,
+         },
+         doctorList :{
+           required : true,
+         },
+         phoneNumber :{
+          required : true,
+          noSpace : true,
+          phoneNo : true,
+          maxlength :10,
+          minlength :10
+         },
+         emailId :{
+          required : true,
+          email : true,
+          noSpace : true,
+          validateEmail : true
+         },
+         address :{
+           required : true,
+         }
+       },
+       messages:{
+        patientName : {
+          required : "please enter user name",
+          noSpace : "spaces not allowed"
+        },
+        patientAge :{
+          required : "please enter valid Age",
+          numbers : "please enter valid Age"
+        },
+        consultingHospital :{
+          required : "please enter consulting hospital"
+        },
+        doctorList :{
+          required : "please select doctor"
+        },
+        phoneNumber :{
+          required : "please enter valid phone number",
+          phoneNo : "please enter valid phone number",
+        },
+        emailId :{
+          required : "please enter valid email id",
+          email:"please enter valid email id",
+          validateEmail : "please enter valid email id"
+        },
+        address :{
+          required : "please Enter the Address"
+        }
+       }
+     });
+  }
+}
+
 function cancelAddPatient(){
    $("#popup").hide();
  }
  
  function createPatient(event)
  {
+  validatePatientFormData();
+  if($("#patient_form").valid())
+   {
+      createOrUpdatepatientData();
+   }
+   event.preventDefault();
+ }
+
+  function createOrUpdatepatientData()
+  {
     if($("#patient_create_btn").val() === "Update")
     {
       updatePatient();
@@ -31,7 +131,6 @@ function cancelAddPatient(){
     $("#workArea").css("background-image", "none");
     document.getElementById("workArea").innerHTML = "";
     loadPatientList();
-    event.preventDefault();
   }
 
   function createNewPatient()
