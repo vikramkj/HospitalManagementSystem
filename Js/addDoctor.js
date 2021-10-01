@@ -247,5 +247,3 @@ function cancelDeleteDialog()
 {
   $("#deleteDialog").hide();
 }
-
-
